@@ -1,101 +1,1157 @@
-<!doctype html>
+
+
+<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#090909">
-<title>GOLDEN — Social</title>
-<style>
-:root{--bg:#090909;--panel:#151515;--panel2:#1e1e1e;--gold:#e8bd52;--text:#f7f4ea;--muted:#aaa69a;--line:#34312a;--red:#ff6d6d}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:3;background:#090909ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.brand{font-size:24px;font-weight:900;letter-spacing:2px;color:var(--gold)}.brand span{font-size:10px;display:block;letter-spacing:3px;color:var(--muted);font-weight:500}
-button,.button{border:1px solid #9d7b2d;background:var(--gold);color:#17130a;font-weight:750;border-radius:12px;padding:11px 14px;font-size:14px;cursor:pointer}
-button.secondary{background:var(--panel2);color:var(--text);border-color:var(--line)}button.danger{background:#311b1b;color:#ffb5b5;border-color:#633}
-input,textarea{width:100%;background:#101010;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:12px;font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--gold)}textarea{min-height:88px;resize:vertical}
-main{max-width:720px;margin:0 auto;padding:16px 12px 90px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:13px}
-h2,h3,p{margin-top:0}h2{font-size:19px}h3{font-size:16px;margin-bottom:7px}.muted{color:var(--muted);font-size:13px}.gold{color:var(--gold)}.row{display:flex;gap:9px;align-items:center}.row>*{min-width:0}.row .grow{flex:1}.stack{display:grid;gap:10px}.hidden{display:none!important}
-.tabs{display:flex;gap:7px;overflow:auto;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:65px;background:#090909f2;z-index:2}
-.tabs button{white-space:nowrap;padding:9px 12px}.tabs button.active{background:var(--gold);color:#111}
-.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#3a2e13;border:1px solid #8c6c25;color:var(--gold);font-weight:900;flex-shrink:0}
-.post-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.post-head .meta{flex:1}.post-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5}.post-image{max-width:100%;max-height:430px;object-fit:contain;border-radius:12px;margin-top:10px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{padding:8px 11px;background:#222;color:var(--text);border-color:var(--line)}.actions button.liked{color:var(--gold);border-color:#9d7b2d}
-.notice{padding:12px;border-radius:12px;background:#211d11;border:1px solid #59471e;color:#f3d88b;line-height:1.45;margin-bottom:12px;font-size:13px}.error{color:#ff9c9c}.success{color:#a6e6ad}.small{font-size:12px}.navbottom{position:fixed;bottom:0;left:0;right:0;z-index:4;background:#101010f5;border-top:1px solid var(--line);padding:9px max(12px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px}.navbottom button{flex:1;max-width:140px;padding:10px 5px}.comment{padding:9px 0;border-top:1px solid var(--line);font-size:14px}.status{font-size:12px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#080808">
+
+  <title>GOLDEN — Connect with your world</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    :root {
+
+      --gold: #f5c542;
+
+      --bg: #080808;
+
+      --panel: #151515;
+
+      --text: #ffffff;
+
+      --muted: #a7a7a7;
+
+      --border: #303030;
+
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+
+      margin: 0;
+
+      background: var(--bg);
+
+      color: var(--text);
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    }
+
+    button, input, textarea { font: inherit; }
+
+    button {
+
+      cursor: pointer;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      padding: 12px 16px;
+
+      font-weight: 700;
+
+    }
+
+    button:disabled { opacity: .6; cursor: wait; }
+
+    .gold-btn {
+
+      background: var(--gold);
+
+      color: #111;
+
+    }
+
+    .dark-btn {
+
+      background: #292929;
+
+      color: white;
+
+      border: 1px solid #404040;
+
+    }
+
+    header {
+
+      background: #101010;
+
+      border-bottom: 1px solid var(--border);
+
+      padding: 15px 18px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 5;
+
+    }
+
+    .header-inner {
+
+      max-width: 700px;
+
+      margin: auto;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+    .brand {
+
+      color: var(--gold);
+
+      font-size: 25px;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+    }
+
+    .tagline {
+
+      font-size: 11px;
+
+      color: var(--muted);
+
+      margin-top: 3px;
+
+    }
+
+    main {
+
+      max-width: 620px;
+
+      margin: 25px auto;
+
+      padding: 0 14px 50px;
+
+    }
+
+    .panel {
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 20px;
+
+      margin-bottom: 18px;
+
+    }
+
+    h2 { margin: 0 0 8px; }
+
+    h3 { margin: 0 0 14px; }
+
+    .muted { color: var(--muted); font-size: 14px; }
+
+    label {
+
+      display: block;
+
+      margin: 14px 0 7px;
+
+      font-size: 13px;
+
+      color: #ddd;
+
+    }
+
+    input, textarea {
+
+      width: 100%;
+
+      background: #090909;
+
+      color: white;
+
+      border: 1px solid #383838;
+
+      border-radius: 10px;
+
+      padding: 13px;
+
+      outline: none;
+
+    }
+
+    input:focus, textarea:focus { border-color: var(--gold); }
+
+    textarea {
+
+      min-height: 100px;
+
+      resize: vertical;
+
+    }
+
+    .full { width: 100%; margin-top: 15px; }
+
+    .switch {
+
+      color: var(--gold);
+
+      background: transparent;
+
+      padding: 5px;
+
+    }
+
+    .message {
+
+      display: none;
+
+      padding: 12px;
+
+      border-radius: 9px;
+
+      margin: 12px 0;
+
+      font-size: 14px;
+
+      overflow-wrap: anywhere;
+
+    }
+
+    .message.error { display: block; background: #3a1717; color: #ffbaba; }
+
+    .message.success { display: block; background: #17351e; color: #b7ffc5; }
+
+    .hidden { display: none !important; }
+
+    .post {
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+
+      padding: 17px;
+
+      margin-bottom: 14px;
+
+      overflow-wrap: anywhere;
+
+    }
+
+    .post-head {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 13px;
+
+    }
+
+    .avatar {
+
+      width: 42px;
+
+      height: 42px;
+
+      background: #302710;
+
+      color: var(--gold);
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-weight: 900;
+
+      flex-shrink: 0;
+
+    }
+
+    .post-name { font-weight: 700; }
+
+    .post-time { color: var(--muted); font-size: 12px; margin-top: 3px; }
+
+    .post-content { white-space: pre-wrap; line-height: 1.55; }
+
+    .post-actions {
+
+      border-top: 1px solid var(--border);
+
+      margin-top: 14px;
+
+      padding-top: 12px;
+
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+    }
+
+    .post-actions button { padding: 9px 12px; }
+
+    .status {
+
+      color: var(--muted);
+
+      text-align: center;
+
+      padding: 25px 10px;
+
+    }
+
+    footer {
+
+      color: #777;
+
+      text-align: center;
+
+      font-size: 12px;
+
+      padding: 20px;
+
+    }
+
+    @media (max-width: 480px) {
+
+      main { margin-top: 16px; }
+
+      .panel { padding: 16px; }
+
+      .brand { font-size: 22px; }
+
+    }
+
+  </style>
+
 </head>
+
 <body>
-<header><div class="brand">GOLDEN<span>CONNECT • SHARE • BELONG</span></div><button id="signOutBtn" class="secondary hidden">Log out</button></header>
-<div id="configNotice" class="notice" style="margin:12px 12px 0">Setup needed: create your free Supabase project, then add its Project URL and anon/public key in this file. Follow the included setup guide. Until configured, this page is a preview and cannot create real accounts or send real messages.</div>
-<main>
-<section id="authView" class="card stack">
-  <div><h2 class="gold">Welcome to GOLDEN</h2><p class="muted">A place to share moments and connect with people.</p></div>
-  <div class="row"><button id="loginMode" class="grow">Log in</button><button id="signupMode" class="secondary grow">Create account</button></div>
-  <form id="authForm" class="stack">
-    <input id="displayName" class="hidden" placeholder="Your display name" maxlength="40">
-    <input id="email" type="email" autocomplete="email" placeholder="Email address" required>
-    <input id="password" type="password" autocomplete="current-password" placeholder="Password (at least 8 characters)" minlength="8" required>
-    <button id="authSubmit" type="submit">Log in</button>
-  </form>
-  <div id="authMsg" class="status" aria-live="polite"></div>
-</section>
-<section id="appView" class="hidden">
- <div class="tabs" id="tabs">
-  <button class="active" data-tab="feed">Home</button><button data-tab="discover">Discover</button><button data-tab="messages">Messages</button><button data-tab="profile">My profile</button>
- </div>
- <section id="feedPage">
-  <div class="card stack"><h2 class="gold">Share something</h2><textarea id="postText" maxlength="2000" placeholder="What's happening?"></textarea><input id="postImage" type="url" placeholder="Optional image URL (https://...)"><button id="publishPost">Publish post</button><div id="postMsg" class="status"></div></div>
-  <div id="feedList"></div>
- </section>
- <section id="discoverPage" class="hidden"><div class="card stack"><h2 class="gold">Discover people</h2><input id="searchUsers" placeholder="Search display names"><button id="searchBtn">Search</button><div id="userResults"></div></div></section>
- <section id="messagesPage" class="hidden"><div class="card stack"><h2 class="gold">Private messages</h2><p class="muted">Choose a person from Discover or enter their exact user ID below. Messages are private to the two participants when database policies are installed.</p><input id="chatUserId" placeholder="Recipient user ID (UUID)"><button id="openChat">Open conversation</button><div id="chatArea" class="hidden stack"><div id="chatHeading" class="muted"></div><div id="chatList"></div><textarea id="messageText" maxlength="3000" placeholder="Write a message…"></textarea><button id="sendMessage">Send message</button></div><div id="chatMsg" class="status"></div></div></section>
- <section id="profilePage" class="hidden"><div class="card stack"><h2 class="gold">My profile</h2><div id="myUserId" class="status"></div><input id="profileName" maxlength="40" placeholder="Display name"><input id="profilePhoto" type="url" placeholder="Profile photo URL (optional)"><textarea id="profileBio" maxlength="240" placeholder="A short bio"></textarea><button id="saveProfile">Save profile</button><button id="deleteAccount" class="danger">Request account deletion</button><div id="profileMsg" class="status"></div></div></section>
-</section>
-</main>
-<div id="bottomNav" class="navbottom hidden"><button data-tab="feed">⌂ Home</button><button data-tab="discover">⌕ Discover</button><button data-tab="messages">✉ Messages</button><button data-tab="profile">◎ Profile</button></div>
-<script>
-const SUPABASE_URL = "https://xzifyfuukilypdwevgsu.supabase.co";
-   Never paste a service_role/secret key into a browser app. */
-const SUPABASE_URL = "https://xzifyfuukilypdwevgsu.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_.";
-let db = null, user = null, mode = "login", activeChatId = null, activeChatName = "";
-const $ = id => document.getElementById(id);
-const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && SUPABASE_ANON_KEY.length > 30 && !SUPABASE_ANON_KEY.includes("PASTE_");
-if (configured && window.supabase) db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-if (configured) $("configNotice").textContent = "Connected to your Supabase project. Create the SQL tables and policies from the setup guide before using the app.";
-function say(id, msg, cls=""){ $(id).className="status "+cls; $(id).textContent=msg; }
-function avatar(name){return (name||"G").trim().slice(0,1).toUpperCase()||"G";}
-function escapeHtml(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function requireDb(){if(!db){throw new Error("GOLDEN is not connected yet. Follow the setup guide to add your free Supabase project URL and anon key.");}}
-function switchMode(m){mode=m;$("displayName").classList.toggle("hidden",m!=="signup");$("authSubmit").textContent=m==="signup"?"Create account":"Log in";$("loginMode").classList.toggle("secondary",m!=="login");$("signupMode").classList.toggle("secondary",m!=="signup");$("password").autocomplete=m==="signup"?"new-password":"current-password";say("authMsg","");}
-$("loginMode").onclick=()=>switchMode("login");$("signupMode").onclick=()=>switchMode("signup");
-$("authForm").onsubmit=async e=>{e.preventDefault();try{requireDb();$("authSubmit").disabled=true;say("authMsg","Working…");let email=$("email").value.trim(),password=$("password").value;let result;
-if(mode==="signup"){result=await db.auth.signUp({email,password,options:{data:{display_name:$("displayName").value.trim()||email.split("@")[0]}}});}
-else result=await db.auth.signInWithPassword({email,password});
-if(result.error)throw result.error;
-if(mode==="signup"&&!result.data.session){say("authMsg","Account created. Check your email to confirm, then log in.","success");}
-else {user=result.data.user;await ensureProfile();showApp();}
-}catch(e){say("authMsg",e.message,"error");}finally{$("authSubmit").disabled=false;}};
-async function ensureProfile(){const {data}=await db.from("profiles").select("*").eq("id",user.id).maybeSingle();if(!data){const {error}=await db.from("profiles").insert({id:user.id,display_name:user.user_metadata?.display_name||user.email.split("@")[0]});if(error)console.warn(error);} }
-function showApp(){ $("authView").classList.add("hidden");$("appView").classList.remove("hidden");$("bottomNav").classList.remove("hidden");$("signOutBtn").classList.remove("hidden");$("myUserId").textContent="Your user ID: "+user.id;loadProfile();loadFeed(); }
-$("signOutBtn").onclick=async()=>{await db.auth.signOut();user=null;$("appView").classList.add("hidden");$("bottomNav").classList.add("hidden");$("signOutBtn").classList.add("hidden");$("authView").classList.remove("hidden");};
-function goTab(tab){["feed","discover","messages","profile"].forEach(t=>$(t+"Page").classList.toggle("hidden",t!==tab));document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));if(tab==="feed")loadFeed();if(tab==="profile")loadProfile();}
-document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>goTab(b.dataset.tab));
-$("publishPost").onclick=async()=>{try{requireDb();let body=$("postText").value.trim(),image_url=$("postImage").value.trim();if(!body&&!image_url)throw new Error("Write something or add an image URL.");if(image_url&&!/^https:\\/\\//i.test(image_url))throw new Error("Image links must start with https://");const {error}=await db.from("posts").insert({user_id:user.id,body,image_url:image_url||null});if(error)throw error;$("postText").value="";$("postImage").value="";say("postMsg","Posted successfully.","success");loadFeed();}catch(e){say("postMsg",e.message,"error");}};
-async function loadFeed(){if(!db||!user)return;const list=$("feedList");list.innerHTML='<div class="card muted">Loading posts…</div>';const {data:posts,error}=await db.from("posts").select("id,user_id,body,image_url,created_at,profiles(display_name,photo_url)").order("created_at",{ascending:false}).limit(50);if(error){list.innerHTML='<div class="card error">'+escapeHtml(error.message)+'</div>';return;}if(!posts?.length){list.innerHTML='<div class="card muted">No posts yet. Be the first to share something.</div>';return;}
-const ids=posts.map(p=>p.id);const {data:likes}=await db.from("likes").select("post_id,user_id").in("post_id",ids);const {data:comments}=await db.from("comments").select("id,post_id,user_id,body,created_at,profiles(display_name)").in("post_id",ids).order("created_at",{ascending:true});
-list.innerHTML=posts.map(p=>{let liked=(likes||[]).some(l=>l.post_id===p.id&&l.user_id===user.id),mine=p.user_id===user.id,pc=(comments||[]).filter(c=>c.post_id===p.id);return `<article class="card" data-post="${p.id}"><div class="post-head"><div class="avatar">${escapeHtml(avatar(p.profiles?.display_name))}</div><div class="meta"><b>${escapeHtml(p.profiles?.display_name||"GOLDEN member")}</b><div class="muted">${new Date(p.created_at).toLocaleString()}</div></div>${mine?'<button class="secondary deletePost">Delete</button>':''}</div><div class="post-body">${escapeHtml(p.body||"")}</div>${p.image_url?`<img class="post-image" src="${escapeHtml(p.image_url)}" alt="Post image" loading="lazy" referrerpolicy="no-referrer">`:''}<div class="actions"><button class="${liked?'liked':''} likeBtn">${liked?'♥ Liked':'♡ Like'} (${(likes||[]).filter(l=>l.post_id===p.id).length})</button><button class="commentToggle">Comments (${pc.length})</button>${!mine?`<button class="secondary followBtn" data-user="${p.user_id}">Follow</button>`:''}</div><div class="commentsBox hidden">${pc.map(c=>`<div class="comment"><b>${escapeHtml(c.profiles?.display_name||"Member")}</b> ${escapeHtml(c.body)}</div>`).join("")}<div class="row" style="margin-top:8px"><input class="commentInput" placeholder="Write a comment…" maxlength="500"><button class="sendComment">Send</button></div></div></article>`}).join("");
-list.querySelectorAll("article").forEach(card=>{let id=card.dataset.post;card.querySelector(".likeBtn").onclick=async()=>{let is=card.querySelector(".likeBtn").classList.contains("liked");let q=is?db.from("likes").delete().eq("post_id",id).eq("user_id",user.id):db.from("likes").insert({post_id:id,user_id:user.id});let {error}=await q;if(error)alert(error.message);else loadFeed();};card.querySelector(".commentToggle").onclick=()=>card.querySelector(".commentsBox").classList.toggle("hidden");card.querySelector(".sendComment").onclick=async()=>{let body=card.querySelector(".commentInput").value.trim();if(!body)return;let {error}=await db.from("comments").insert({post_id:id,user_id:user.id,body});if(error)alert(error.message);else loadFeed();};let del=card.querySelector(".deletePost");if(del)del.onclick=async()=>{if(confirm("Delete this post?")){let {error}=await db.from("posts").delete().eq("id",id).eq("user_id",user.id);if(error)alert(error.message);else loadFeed();}};let follow=card.querySelector(".followBtn");if(follow)follow.onclick=()=>followUser(follow.dataset.user);});
-}
-async function followUser(id){if(id===user.id)return alert("That is your own profile.");const {error}=await db.from("follows").upsert({follower_id:user.id,following_id:id},{onConflict:"follower_id,following_id"});if(error)alert(error.message);else alert("Following.");}
-$("searchBtn").onclick=async()=>{try{requireDb();let q=$("searchUsers").value.trim();let req=db.from("profiles").select("id,display_name,bio,photo_url").neq("id",user.id).limit(30);if(q)req=req.ilike("display_name","%"+q+"%");let {data,error}=await req;if(error)throw error;$("userResults").innerHTML=(data||[]).map(p=>`<div class="comment row"><div class="avatar">${escapeHtml(avatar(p.display_name))}</div><div class="grow"><b>${escapeHtml(p.display_name||"GOLDEN member")}</b><div class="muted">${escapeHtml(p.bio||"")}</div><div class="small muted">ID: ${escapeHtml(p.id)}</div></div><button class="followUserBtn" data-id="${p.id}">Follow</button><button class="secondary msgUserBtn" data-id="${p.id}">Message</button></div>`).join("")||'<p class="muted">No users found.</p>';document.querySelectorAll(".followUserBtn").forEach(b=>b.onclick=()=>followUser(b.dataset.id));document.querySelectorAll(".msgUserBtn").forEach(b=>b.onclick=()=>{goTab("messages");$("chatUserId").value=b.dataset.id;openChat();});}catch(e){$("userResults").textContent=e.message;}};
-async function loadProfile(){if(!db||!user)return;let {data}=await db.from("profiles").select("*").eq("id",user.id).maybeSingle();if(data){$("profileName").value=data.display_name||"";$("profilePhoto").value=data.photo_url||"";$("profileBio").value=data.bio||"";}}
-$("saveProfile").onclick=async()=>{try{const {error}=await db.from("profiles").upsert({id:user.id,display_name:$("profileName").value.trim()||"GOLDEN member",photo_url:$("profilePhoto").value.trim()||null,bio:$("profileBio").value.trim(),updated_at:new Date().toISOString()});if(error)throw error;say("profileMsg","Profile saved.","success");}catch(e){say("profileMsg",e.message,"error");}};
-async function openChat(){try{requireDb();let id=$("chatUserId").value.trim();if(!id)throw new Error("Enter a recipient user ID.");if(id===user.id)throw new Error("Choose another user.");activeChatId=id;const {data,error}=await db.from("profiles").select("display_name").eq("id",id).maybeSingle();if(error)throw error;if(!data)throw new Error("User not found. Copy their ID from Discover.");activeChatName=data.display_name||"GOLDEN member";$("chatHeading").textContent="Conversation with "+activeChatName;$("chatArea").classList.remove("hidden");await loadMessages();}catch(e){say("chatMsg",e.message,"error");}}
-$("openChat").onclick=openChat;
-async function loadMessages(){if(!activeChatId)return;let {data,error}=await db.from("messages").select("*").or(`and(sender_id.eq.${user.id},recipient_id.eq.${activeChatId}),and(sender_id.eq.${activeChatId},recipient_id.eq.${user.id})`).order("created_at",{ascending:true}).limit(100);if(error){say("chatMsg",error.message,"error");return;}$("chatList").innerHTML=(data||[]).map(m=>`<div class="comment"><b class="${m.sender_id===user.id?'gold':''}">${m.sender_id===user.id?'You':escapeHtml(activeChatName)}</b><div>${escapeHtml(m.body)}</div><div class="muted small">${new Date(m.created_at).toLocaleString()}</div></div>`).join("")||'<p class="muted">No messages yet. Say hello!</p>';}
-$("sendMessage").onclick=async()=>{try{let body=$("messageText").value.trim();if(!body)return;if(!activeChatId)throw new Error("Open a conversation first.");const {error}=await db.from("messages").insert({sender_id:user.id,recipient_id:activeChatId,body});if(error)throw error;$("messageText").value="";say("chatMsg","Message sent.","success");await loadMessages();}catch(e){say("chatMsg",e.message,"error");}};
-$("deleteAccount").onclick=()=>say("profileMsg","For safety, account deletion must be completed by the project owner from the Supabase dashboard (Authentication → Users) until a secure server-side deletion function is installed. Do not use this button as proof your account has been deleted.","error");
-(async()=>{if(!db)return;const {data:{session}}=await db.auth.getSession();if(session){user=session.user;await ensureProfile();showApp();}db.auth.onAuthStateChange((_event,session)=>{if(session&&!user){user=session.user;setTimeout(async()=>{await ensureProfile();showApp();},0);}});})();
-</script>
+
+  <header>
+
+    <div class="header-inner">
+
+      <div>
+
+        <div class="brand">GOLDEN</div>
+
+        <div class="tagline">Connect. Share. Shine.</div>
+
+      </div>
+
+      <button id="logoutBtn" class="dark-btn hidden" type="button">
+
+        Log out
+
+      </button>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <section id="authSection" class="panel">
+
+      <h2 id="authTitle">Join GOLDEN</h2>
+
+      <p class="muted" id="authSubtitle">
+
+        Create your account and connect with people.
+
+      </p>
+
+      <div id="authMessage" class="message"></div>
+
+      <form id="authForm">
+
+        <div id="usernameField">
+
+          <label for="username">Username</label>
+
+          <input id="username" type="text" minlength="3" maxlength="24"
+
+            autocomplete="username" placeholder="Choose a username" required>
+
+        </div>
+
+        <label for="email">Email address</label>
+
+        <input id="email" type="email" autocomplete="email"
+
+          placeholder="you@example.com" required>
+
+        <label for="password">Password</label>
+
+        <input id="password" type="password" minlength="6"
+
+          autocomplete="current-password" placeholder="At least 6 characters"
+
+          required>
+
+        <button id="authSubmit" class="gold-btn full" type="submit">
+
+          Create account
+
+        </button>
+
+      </form>
+
+      <p class="muted" style="text-align:center;margin-top:18px">
+
+        <span id="switchText">Already have an account?</span>
+
+        <button id="switchAuth" class="switch" type="button">Log in</button>
+
+      </p>
+
+    </section>
+
+    <section id="appSection" class="hidden">
+
+      <div class="panel">
+
+        <h2 id="welcomeTitle">Welcome to GOLDEN</h2>
+
+        <p class="muted">Share your thoughts with the community.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>Create a post</h3>
+
+        <div id="postMessage" class="message"></div>
+
+        <form id="postForm">
+
+          <textarea id="postContent" maxlength="2000"
+
+            placeholder="What's on your mind?" required></textarea>
+
+          <button id="publishBtn" class="gold-btn full" type="submit">
+
+            Publish post
+
+          </button>
+
+        </form>
+
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;
+
+        gap:10px;margin:24px 3px 15px">
+
+        <h2>Community feed</h2>
+
+        <button id="refreshBtn" class="dark-btn" type="button">Refresh</button>
+
+      </div>
+
+      <div id="feed">
+
+        <div class="status">Loading posts...</div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>GOLDEN © 2026 · Connect. Share. Shine.</footer>
+
+  <script>
+
+    // Replace the placeholder below with your FULL Supabase publishable key.
+
+    // Never put a service_role key or secret key in this website.
+
+    const SUPABASE_URL = "https://xzifyfuukilypdwevgsu.supabase.co";
+
+    const SUPABASE_ANON_KEY = "PASTE_YOUR_FULL_PUBLISHABLE_KEY_HERE";
+
+    const authSection = document.getElementById("authSection");
+
+    const appSection = document.getElementById("appSection");
+
+    const authForm = document.getElementById("authForm");
+
+    const authMessage = document.getElementById("authMessage");
+
+    const postMessage = document.getElementById("postMessage");
+
+    let isLogin = false;
+
+    let currentUser = null;
+
+    let profileCache = {};
+
+    function showMessage(element, text, type) {
+
+      element.textContent = text;
+
+      element.className = "message " + type;
+
+    }
+
+    function clearMessage(element) {
+
+      element.textContent = "";
+
+      element.className = "message";
+
+    }
+
+    function setBusy(button, busy, busyText, normalText) {
+
+      button.disabled = busy;
+
+      button.textContent = busy ? busyText : normalText;
+
+    }
+
+    function makeUsername(email) {
+
+      return (email.split("@")[0] || "golden_user")
+
+        .replace(/[^a-zA-Z0-9_]/g, "_")
+
+        .slice(0, 24);
+
+    }
+
+    function escapeHTML(value) {
+
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+
+        "&": "&amp;",
+
+        "<": "&lt;",
+
+        ">": "&gt;",
+
+        '"': "&quot;",
+
+        "'": "&#39;"
+
+      })[char]);
+
+    }
+
+    function formatDate(value) {
+
+      if (!value) return "";
+
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) return "";
+
+      return date.toLocaleString();
+
+    }
+
+    function updateAuthMode() {
+
+      document.getElementById("authTitle").textContent =
+
+        isLogin ? "Welcome back" : "Join GOLDEN";
+
+      document.getElementById("authSubtitle").textContent =
+
+        isLogin ? "Log in to your account." :
+
+        "Create your account and connect with people.";
+
+      document.getElementById("usernameField").classList.toggle("hidden", isLogin);
+
+      document.getElementById("username").required = !isLogin;
+
+      document.getElementById("authSubmit").textContent =
+
+        isLogin ? "Log in" : "Create account";
+
+      document.getElementById("switchText").textContent =
+
+        isLogin ? "New to GOLDEN?" : "Already have an account?";
+
+      document.getElementById("switchAuth").textContent =
+
+        isLogin ? "Create account" : "Log in";
+
+      document.getElementById("password").autocomplete =
+
+        isLogin ? "current-password" : "new-password";
+
+      clearMessage(authMessage);
+
+    }
+
+    document.getElementById("switchAuth").addEventListener("click", () => {
+
+      isLogin = !isLogin;
+
+      updateAuthMode();
+
+    });
+
+    function showLoggedOut() {
+
+      currentUser = null;
+
+      authSection.classList.remove("hidden");
+
+      appSection.classList.add("hidden");
+
+      document.getElementById("logoutBtn").classList.add("hidden");
+
+    }
+
+    async function showLoggedIn(user) {
+
+      currentUser = user;
+
+      authSection.classList.add("hidden");
+
+      appSection.classList.remove("hidden");
+
+      document.getElementById("logoutBtn").classList.remove("hidden");
+
+      document.getElementById("welcomeTitle").textContent =
+
+        "Welcome to GOLDEN, " + makeUsername(user.email || "golden").replace(/_/g, " ");
+
+      await ensureProfile(user);
+
+      await loadFeed();
+
+    }
+
+    async function ensureProfile(user) {
+
+      const usernameInput = document.getElementById("username").value.trim();
+
+      const username = usernameInput || makeUsername(user.email || "golden_user");
+
+      // Profiles may already be created by a database trigger.
+
+      const { data: existing, error: lookupError } = await db
+
+        .from("profiles")
+
+        .select("id, username")
+
+        .eq("id", user.id)
+
+        .maybeSingle();
+
+      if (lookupError) {
+
+        console.error("Profile lookup:", lookupError.message);
+
+        return;
+
+      }
+
+      if (existing) {
+
+        profileCache[user.id] = existing;
+
+        document.getElementById("welcomeTitle").textContent =
+
+          "Welcome to GOLDEN, " + (existing.username || username);
+
+        return;
+
+      }
+
+      const { data, error } = await db
+
+        .from("profiles")
+
+        .insert({ id: user.id, username: username })
+
+        .select("id, username")
+
+        .single();
+
+      if (error) {
+
+        // A database trigger might have created the profile at the same time.
+
+        console.error("Profile creation:", error.message);
+
+        return;
+
+      }
+
+      profileCache[user.id] = data;
+
+      document.getElementById("welcomeTitle").textContent =
+
+        "Welcome to GOLDEN, " + (data.username || username);
+
+    }
+
+    authForm.addEventListener("submit", async event => {
+
+      event.preventDefault();
+
+      clearMessage(authMessage);
+
+      if (!db) {
+
+        showMessage(authMessage,
+
+          "Setup needed: enter your full Supabase publishable key in the code.",
+
+          "error");
+
+        return;
+
+      }
+
+      const email = document.getElementById("email").value.trim();
+
+      const password = document.getElementById("password").value;
+
+      const username = document.getElementById("username").value.trim();
+
+      const button = document.getElementById("authSubmit");
+
+      if (!isLogin && !/^[a-zA-Z0-9_]{3,24}$/.test(username)) {
+
+        showMessage(authMessage,
+
+          "Use 3–24 characters for your username: letters, numbers or underscores.",
+
+          "error");
+
+        return;
+
+      }
+
+      setBusy(button, true, "Please wait...", isLogin ? "Log in" : "Create account");
+
+      try {
+
+        if (isLogin) {
+
+          const { data, error } = await db.auth.signInWithPassword({
+
+            email,
+
+            password
+
+          });
+
+          if (error) throw error;
+
+          await showLoggedIn(data.user);
+
+        } else {
+
+          const { data, error } = await db.auth.signUp({
+
+            email,
+
+            password,
+
+            options: {
+
+              data: { username }
+
+            }
+
+          });
+
+          if (error) throw error;
+
+          if (data.session && data.user) {
+
+            await showLoggedIn(data.user);
+
+          } else {
+
+            showMessage(authMessage,
+
+              "Account request received! Check your email for the confirmation link, then return here and log in.",
+
+              "success");
+
+            isLogin = true;
+
+            updateAuthMode();
+
+          }
+
+        }
+
+      } catch (error) {
+
+        showMessage(authMessage, error.message || "Something went wrong.", "error");
+
+      } finally {
+
+        setBusy(button, false, "", isLogin ? "Log in" : "Create account");
+
+      }
+
+    });
+
+    async function loadFeed() {
+
+      const feed = document.getElementById("feed");
+
+      feed.innerHTML = '<div class="status">Loading posts...</div>';
+
+      try {
+
+        const { data: posts, error } = await db
+
+          .from("posts")
+
+          .select("*")
+
+          .order("created_at", { ascending: false })
+
+          .limit(50);
+
+        if (error) throw error;
+
+        if (!posts || posts.length === 0) {
+
+          feed.innerHTML =
+
+            '<div class="panel status">No posts yet. Be the first to share something!</div>';
+
+          return;
+
+        }
+
+        const userIds = [...new Set(posts.map(post => post.user_id).filter(Boolean))];
+
+        const { data: profiles, error: profilesError } = await db
+
+          .from("profiles")
+
+          .select("id, username")
+
+          .in("id", userIds);
+
+        if (profilesError) console.error("Profile loading:", profilesError.message);
+
+        profileCache = {};
+
+        (profiles || []).forEach(profile => {
+
+          profileCache[profile.id] = profile;
+
+        });
+
+        const { data: likes, error: likesError } = await db
+
+          .from("likes")
+
+          .select("post_id, user_id")
+
+          .in("post_id", posts.map(post => post.id));
+
+        if (likesError) console.error("Likes loading:", likesError.message);
+
+        feed.innerHTML = posts.map(post => {
+
+          const profile = profileCache[post.user_id];
+
+          const username = profile?.username || "GOLDEN member";
+
+          const postLikes = (likes || []).filter(like => like.post_id === post.id);
+
+          const likedByMe = postLikes.some(like => like.user_id === currentUser.id);
+
+          const initials = username.slice(0, 1).toUpperCase();
+
+          return `
+
+            <article class="post">
+
+              <div class="post-head">
+
+                <div class="avatar">${escapeHTML(initials)}</div>
+
+                <div>
+
+                  <div class="post-name">${escapeHTML(username)}</div>
+
+                  <div class="post-time">${escapeHTML(formatDate(post.created_at))}</div>
+
+                </div>
+
+              </div>
+
+              <div class="post-content">${escapeHTML(post.content)}</div>
+
+              <div class="post-actions">
+
+                <button class="dark-btn" type="button"
+
+                  data-like="${escapeHTML(post.id)}">
+
+                  ${likedByMe ? "♥ Liked" : "♡ Like"} (${postLikes.length})
+
+                </button>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }).join("");
+
+      } catch (error) {
+
+        console.error("Feed error:", error);
+
+        feed.innerHTML = `
+
+          <div class="panel">
+
+            <p>We couldn't load the feed.</p>
+
+            <p class="muted">${escapeHTML(error.message)}</p>
+
+            <p class="muted">Check your Supabase tables and Row Level Security policies.</p>
+
+          </div>`;
+
+      }
+
+    }
+
+    document.getElementById("postForm").addEventListener("submit", async event => {
+
+      event.preventDefault();
+
+      clearMessage(postMessage);
+
+      const content = document.getElementById("postContent").value.trim();
+
+      if (!content) return;
+
+      const button = document.getElementById("publishBtn");
+
+      setBusy(button, true, "Publishing...", "Publish post");
+
+      try {
+
+        const { error } = await db.from("posts").insert({
+
+          user_id: currentUser.id,
+
+          content
+
+        });
+
+        if (error) throw error;
+
+        document.getElementById("postContent").value = "";
+
+        showMessage(postMessage, "Your post has been published!", "success");
+
+        await loadFeed();
+
+      } catch (error) {
+
+        showMessage(postMessage, error.message || "Could not publish post.", "error");
+
+      } finally {
+
+        setBusy(button, false, "", "Publish post");
+
+      }
+
+    });
+
+    document.getElementById("feed").addEventListener("click", async event => {
+
+      const button = event.target.closest("[data-like]");
+
+      if (!button) return;
+
+      const postId = button.getAttribute("data-like");
+
+      button.disabled = true;
+
+      try {
+
+        const { data: existing, error: lookupError } = await db
+
+          .from("likes")
+
+          .select("post_id")
+
+          .eq("post_id", postId)
+
+          .eq("user_id", currentUser.id)
+
+          .maybeSingle();
+
+        if (lookupError) throw lookupError;
+
+        if (existing) {
+
+          const { error } = await db.from("likes")
+
+            .delete()
+
+            .eq("post_id", postId)
+
+            .eq("user_id", currentUser.id);
+
+          if (error) throw error;
+
+        } else {
+
+          const { error } = await db.from("likes").insert({
+
+            post_id: postId,
+
+            user_id: currentUser.id
+
+          });
+
+          if (error) throw error;
+
+        }
+
+        await loadFeed();
+
+      } catch (error) {
+
+        alert("Couldn't update like: " + (error.message || "Please try again."));
+
+        button.disabled = false;
+
+      }
+
+    });
+
+    document.getElementById("refreshBtn").addEventListener("click", loadFeed);
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+
+      const { error } = await db.auth.signOut();
+
+      if (error) {
+
+        alert("Could not log out: " + error.message);
+
+        return;
+
+      }
+
+      showLoggedOut();
+
+    });
+
+    let db = null;
+
+    if (
+
+      window.supabase &&
+
+      SUPABASE_URL.startsWith("https://") &&
+
+      SUPABASE_ANON_KEY.startsWith("sb_publishable_") &&
+
+      SUPABASE_ANON_KEY.length > 25
+
+    ) {
+
+      db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    } else {
+
+      showMessage(authMessage,
+
+        "Setup needed: replace the publishable-key placeholder in index.html with your full Supabase publishable key.",
+
+        "error");
+
+    }
+
+    async function startApp() {
+
+      if (!db) return;
+
+      try {
+
+        const { data, error } = await db.auth.getSession();
+
+        if (error) throw error;
+
+        if (data.session?.user) {
+
+          await showLoggedIn(data.session.user);
+
+        } else {
+
+          showLoggedOut();
+
+        }
+
+        db.auth.onAuthStateChange((event, session) => {
+
+          if (event === "SIGNED_OUT" || !session) {
+
+            showLoggedOut();
+
+          }
+
+        });
+
+      } catch (error) {
+
+        showMessage(authMessage, error.message || "Could not connect to Supabase.", "error");
+
+      }
+
+    }
+
+    startApp();
+
+  </script>
+
 </body>
+
 </html>
