@@ -448,7 +448,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY";
       }
 
       if (SUPABASE_ANON_KEY.includes("PASTE_YOUR")) {
-        showNotice("Please add your Supabase publishable key in the code before logging in.");
+        showNotice("sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY.");
         return;
       }
 
@@ -481,7 +481,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY";
 
     $("loginForm").addEventListener("submit", async event => {
       event.preventDefault();
-      if (!db) return showNotice("Add your Supabase publishable key first.");
+      if (!db) return showNotice("sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY.");
 
       const { data, error } = await db.auth.signInWithPassword({
         email: $("email").value.trim(),
@@ -494,7 +494,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY";
     });
 
     $("signupButton").addEventListener("click", async () => {
-      if (!db) return showNotice("Add your Supabase publishable key first.");
+      if (!db) return showNotice("sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY.");
 
       const email = $("email").value.trim();
       const password = $("password").value;
