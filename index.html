@@ -5,78 +5,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-<title>GOLDEN — Connect with everyone</title>
+<title>GOLDEN Social</title>
 <style>
-:root{--bg:#000;--panel:#000;--line:#252525;--text:#e7e9ea;--muted:#71767b;--gold:#f5c542;--blue:#1d9bf0}
+:root {
+  --bg:#000;
+  --card:#080808;
+  --line:#202020;
+  --text:#f4f4f4;
+  --muted:#89909e;
+  --gold:#f5c84c;
+  --blue:#1d9bf0;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-button:disabled{opacity:.55}
-a{color:var(--blue)}
-#auth{max-width:420px;margin:45px auto;padding:20px}
-.brand{text-align:center;color:var(--gold);font-size:42px;font-weight:900;letter-spacing:4px;margin:18px 0 6px}
-.tagline{text-align:center;color:var(--muted);margin:0 0 28px}
-.authbox{border:1px solid var(--line);border-radius:18px;padding:22px;background:#080808}
+button:disabled{opacity:.6}
+#auth{max-width:430px;margin:30px auto;padding:20px}
+.brand{text-align:center;color:var(--gold);font-size:40px;font-weight:900;letter-spacing:7px;margin:20px 0 6px}
+.tagline{text-align:center;color:#999;margin:8px 0 28px}
+.authbox{padding:22px;border:1px solid #292929;border-radius:20px;background:#090909}
 .auth-tabs{display:flex;gap:10px;margin-bottom:20px}
-.auth-tabs button{flex:1;padding:12px;border:1px solid #333;background:#151515;color:white;border-radius:10px}
+.auth-tabs button{flex:1;padding:12px;background:#171717;border:1px solid #333;color:white;border-radius:12px}
 .auth-tabs button.active{background:var(--gold);color:#000;border-color:var(--gold)}
-label{display:block;margin:15px 0 7px;font-size:14px}
-.authbox input{width:100%;padding:13px;border-radius:9px;border:1px solid #383838;background:#101010;color:white}
-.goldbtn{width:100%;border:0;border-radius:25px;padding:13px;background:var(--gold);color:#000;font-weight:800;margin-top:18px}
-.notice{font-size:14px;line-height:1.5;padding:10px;margin-top:12px;overflow-wrap:anywhere}
-.err{color:#ff9c9c;background:#321515;border-radius:8px}
-.ok{color:#a7f3b3;background:#102716;border-radius:8px}
-.muted{color:var(--muted);font-size:13px;line-height:1.5}
-#connection{text-align:center;margin-top:15px}
-#app{max-width:1260px;margin:auto;min-height:100vh}
-.layout{display:grid;grid-template-columns:250px minmax(0,600px) 300px;justify-content:center}
-.sidebar{height:100vh;position:sticky;top:0;padding:14px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start}
-.logo{font-size:35px;font-weight:900;color:var(--gold);padding:6px 12px 20px}
-.navbtn{width:100%;display:flex;align-items:center;gap:16px;padding:14px 12px;border:0;background:transparent;color:var(--text);font-size:18px;text-align:left;border-radius:28px;margin:2px 0}
-.navbtn:hover,.navbtn.active{background:#151515}
-.navbtn .ico{font-size:25px;width:29px;text-align:center}
-.postbtn{background:var(--gold);color:#000;border:0;border-radius:28px;padding:15px;font-weight:800;width:100%;margin-top:14px}
-.profilemini{margin-top:auto;padding:12px 0;font-size:13px;overflow-wrap:anywhere}
-.feed{border-right:1px solid var(--line);min-width:0;min-height:100vh;padding-bottom:85px}
-.feedhead{position:sticky;top:0;z-index:5;background:#000e;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.topbar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
-.toplogo{font-size:30px;font-weight:bold}
-.toplogo span{color:var(--gold)}
-.tabs{display:flex;overflow-x:auto;scrollbar-width:none}
-.tabs button{flex:1;min-width:100px;border:0;background:transparent;color:var(--muted);padding:18px 10px;font-weight:700}
-.tabs button.active{color:white;position:relative}
-.tabs button.active:after{content:"";position:absolute;bottom:0;left:18%;right:18%;height:4px;background:var(--gold);border-radius:4px}
-.composer{padding:18px;border-bottom:1px solid var(--line);display:flex;gap:12px}
-.avatar{height:44px;width:44px;min-width:44px;border-radius:50%;background:#292929;color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;overflow:hidden}
+label{display:block;margin:16px 0 7px;font-size:14px}
+.authbox input{width:100%;padding:14px;background:#111;color:white;border:1px solid #383838;border-radius:10px}
+.goldbtn{border:0;background:var(--gold);color:#000;border-radius:28px;padding:13px 20px;font-weight:800}
+.authbox .goldbtn{width:100%;margin-top:22px}
+.notice{margin-top:14px;padding:12px;border-radius:9px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.error{background:#351414;color:#ffc2c2}
+.success{background:#102819;color:#b7f7c2}
+.muted{color:var(--muted)}
+#connection{font-size:12px;text-align:center;margin-top:15px}
+#app{max-width:800px;margin:0 auto;min-height:100vh;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:#000e;backdrop-filter:blur(14px)}
+.topbar{height:77px;display:grid;grid-template-columns:70px 1fr 70px;align-items:center;padding:0 20px}
+.profile-button,.add-friend{border:0;background:transparent;color:white;font-size:26px}
+.profile-button{display:flex;align-items:center;justify-content:flex-start}
+.add-friend{text-align:right}
+.logo{text-align:center;font-size:35px;font-weight:950;letter-spacing:6px;color:var(--gold)}
+.avatar{width:54px;height:54px;min-width:54px;border-radius:50%;border:2px solid var(--gold);background:#191919;color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.tabs{height:54px;display:flex;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:1;min-width:100px;position:relative;border:0;background:transparent;color:#a5a7af;font-weight:750;font-size:16px}
+.tabs button.active{color:white}
+.tabs button.active:after{content:"";position:absolute;bottom:0;left:14%;right:14%;height:3px;border-radius:4px;background:var(--gold)}
+.composer{display:flex;gap:12px;padding:17px 20px;border-bottom:1px solid var(--line)}
+.composer .avatar{width:48px;height:48px;min-width:48px}
 .composebody{flex:1;min-width:0}
-textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;background:transparent;color:white;font-size:18px;padding:10px 0}
-.composebottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.composebottom .muted{font-size:12px}
-.smallgold{border:0;border-radius:25px;background:var(--gold);color:#000;font-weight:800;padding:10px 18px}
-.post{padding:16px 15px 9px;border-bottom:1px solid var(--line);display:flex;gap:11px}
-.postmain{min-width:0;flex:1}
-.postmeta{font-size:14px;line-height:1.5;overflow-wrap:anywhere}
-.postname{font-weight:800;color:white}
+textarea{width:100%;min-height:65px;resize:vertical;background:transparent;border:0;outline:none;color:white;font-size:17px;padding:8px 0}
+.composefoot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1b1b1b;padding-top:10px;gap:10px}
+.composefoot .muted{font-size:12px}
+.post{padding:18px 20px 10px;border-bottom:1px solid var(--line);display:flex;gap:13px}
+.post .avatar{width:55px;height:55px;min-width:55px}
+.postmain{flex:1;min-width:0}
+.meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px;line-height:1.5}
+.name{font-weight:850;color:#fff}
 .handle,.time{color:var(--muted)}
-.posttext{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;margin:7px 0 13px;font-size:15px}
-.postactions{display:flex;justify-content:space-between;gap:3px;max-width:470px}
-.action{background:transparent;border:0;color:var(--muted);padding:7px 3px;font-size:13px;display:flex;align-items:center;gap:5px}
+.verified{color:var(--blue);font-size:14px}
+.dots{margin-left:auto;border:0;background:transparent;color:#a3a8b4}
+.posttext{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;font-size:16px;margin:7px 0 12px}
+.tags{color:var(--gold);font-size:14px;margin:10px 0 13px;line-height:1.8}
+.tag{display:inline-block;background:#17140a;border-radius:18px;padding:2px 10px;margin:0 4px 3px 0}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:2px}
+.action{border:0;background:transparent;color:#9ba6ba;padding:6px 0;font-size:13px;display:flex;align-items:center;gap:5px}
+.action .symbol{font-size:21px}
 .action:hover{color:var(--gold)}
-.action.liked{color:#f91880}
-.action.reposted{color:#00ba7c}
-.postmenu{float:right;color:var(--muted);border:0;background:none}
-.rightbar{padding:15px}
-.searchbox{background:#171717;border-radius:25px;padding:13px 16px;color:var(--muted);margin-bottom:16px}
-.sidecard{border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
-.sidecard h3{margin:0 0 12px}
-.sidecard p{font-size:13px;color:var(--muted);line-height:1.5}
-.mobilebar{display:none}
+.action.liked{color:#ff5791}
+.action.reposted{color:var(--gold)}
+.promo{margin:20px;padding:20px;border:1px solid #544522;border-radius:17px;background:radial-gradient(ellipse at right,#241b08 0%,#080808 62%);display:flex;gap:13px;align-items:flex-start}
+.promoicon{font-size:35px;color:var(--gold)}
+.promo h3{margin:3px 0 10px;font-size:20px}
+.promo p{color:#bbb;line-height:1.5;margin:0 0 15px;font-size:14px}
+.outlinebtn{border:1px solid var(--gold);border-radius:25px;padding:10px 16px;color:var(--gold);background:transparent;font-weight:750}
 .empty{text-align:center;padding:45px 20px;color:var(--muted);line-height:1.6}
-#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#242424;color:white;padding:12px 18px;border-radius:12px;z-index:20;max-width:90%;font-size:14px}
-@media(max-width:950px){.layout{grid-template-columns:80px minmax(0,600px)}.sidebar{align-items:center;padding:12px 8px}.logo{font-size:28px;padding:12px 0 25px}.navbtn{justify-content:center;padding:13px 0}.navbtn .label,.profilemini,.postbtn .label{display:none}.postbtn{border-radius:50%;width:50px;height:50px;padding:0;font-size:22px}.rightbar{display:none}}
-@media(max-width:560px){#auth{margin:15px auto;padding:15px}.layout{display:block}.sidebar{display:none}.feed{border:0;min-height:100vh}.topbar{height:54px}.composer{padding:14px 12px}.post{padding:14px 11px 8px}.post .avatar{width:40px;height:40px;min-width:40px}.mobilebar{position:fixed;z-index:10;bottom:0;left:0;right:0;display:flex;justify-content:space-around;align-items:center;height:65px;padding-bottom:env(safe-area-inset-bottom);background:#000f;border-top:1px solid var(--line)}.mobilebar button{background:transparent;border:0;color:var(--text);font-size:25px;padding:10px}.mobilebar button.active{color:var(--gold)}.postbtn{display:none}.brand{font-size:38px}.postactions{gap:1px}.action{font-size:12px}.tabs button{min-width:85px;padding:17px 8px}}
+.pageheading{padding:20px;border-bottom:1px solid var(--line)}
+.pageheading h2{margin:0 0 8px}
+.fab{position:fixed;z-index:7;right:max(24px,calc((100vw - 760px)/2 + 24px));bottom:calc(90px + env(safe-area-inset-bottom));width:62px;height:62px;border-radius:50%;border:0;background:var(--gold);color:#090909;font-size:38px;box-shadow:0 5px 22px #0009}
+.bottomnav{position:fixed;z-index:10;bottom:0;left:0;right:0;height:calc(68px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:flex;align-items:center;justify-content:space-around;background:#000f;border-top:1px solid #242424}
+.bottomnav button{flex:1;height:100%;border:0;background:transparent;color:#b3b6c0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12px}
+.bottomnav .navicon{font-size:25px;line-height:1.1}
+.bottomnav button.active{color:var(--gold)}
+.bottomnav button.active .navlabel{font-weight:800}
+#toast{position:fixed;z-index:20;left:50%;bottom:calc(85px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:90%;padding:12px 18px;background:#242424;color:white;border:1px solid #414141;border-radius:12px;font-size:14px}
+@media(min-width:801px){#app{border-left:1px solid #222;border-right:1px solid #222}.bottomnav{max-width:800px;left:50%;right:auto;width:100%;transform:translateX(-50%)}}
+@media(max-width:430px){.topbar{padding:0 15px;grid-template-columns:55px 1fr 55px}.logo{font-size:30px;letter-spacing:5px}.tabs button{font-size:15px;min-width:95px}.post{padding:16px 13px 9px;gap:10px}.post .avatar{width:47px;height:47px;min-width:47px}.posttext{font-size:15px}.actions{gap:0}.action{font-size:12px}.action .symbol{font-size:20px}.composer{padding:14px}.promo{margin:15px;padding:16px}}
 </style>
 </head>
 <body>
@@ -97,71 +111,62 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
         <input id="fullName" maxlength="80" autocomplete="name" placeholder="Your name">
       </div>
       <label for="email">Email address</label>
-      <input id="email" type="email" autocomplete="email" required placeholder="you@example.com">
+      <input id="email" type="email" required autocomplete="email" placeholder="you@example.com">
       <label for="password">Password</label>
       <input id="password" type="password" minlength="6" required autocomplete="current-password" placeholder="At least 6 characters">
       <button id="authSubmit" class="goldbtn" type="submit">Log in</button>
     </form>
     <div id="authMessage" class="notice hidden" role="status"></div>
-    <p class="muted">Use a valid email. If email confirmation is enabled, confirm your account before logging in.</p>
-    <p id="connection" class="muted">Connecting to GOLDEN…</p>
+    <p class="muted">If email confirmation is enabled, confirm your email before logging in.</p>
+    <p id="connection" class="muted">Connecting securely…</p>
   </div>
 </section>
 
 <section id="app" class="hidden">
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="logo">G.</div>
-      <button class="navbtn active" data-page="home"><span class="ico">⌂</span><span class="label">Home</span></button>
-      <button class="navbtn" data-page="search"><span class="ico">⌕</span><span class="label">Explore</span></button>
-      <button class="navbtn" data-page="notifications"><span class="ico">♧</span><span class="label">Notifications</span></button>
-      <button class="navbtn" data-page="messages"><span class="ico">✉</span><span class="label">Messages</span></button>
-      <button class="navbtn" data-page="profile"><span class="ico">♙</span><span class="label">Profile</span></button>
-      <button class="postbtn" id="sidePost">＋ <span class="label">Post</span></button>
-      <div class="profilemini"><strong id="miniName">GOLDEN member</strong><br><span id="miniEmail" class="muted"></span><br><button id="logout" class="navbtn" style="font-size:13px">↪ Log out</button></div>
-    </aside>
+  <header>
+    <div class="topbar">
+      <button class="profile-button" id="topProfile" aria-label="Your profile">
+        <span class="avatar" id="topAvatar">G</span>
+      </button>
+      <div class="logo">GOLDEN</div>
+      <button class="add-friend" id="findPeople" aria-label="Find people">♙<sup>+</sup></button>
+    </div>
+    <nav class="tabs" id="feedTabs">
+      <button class="active" data-feed="for-you">For You</button>
+      <button data-feed="following">Following</button>
+      <button data-feed="discover">Discover</button>
+    </nav>
+  </header>
 
-    <main class="feed">
-      <header class="feedhead">
-        <div class="topbar"><strong class="toplogo"><span>✳</span> GOLDEN</strong><button id="topProfile" class="navbtn" style="width:auto;margin:0">♙</button></div>
-        <div class="tabs" id="feedTabs">
-          <button class="active" data-feed="for-you">For you</button>
-          <button data-feed="following">Following</button>
-          <button data-feed="music">Music</button>
-          <button data-feed="culture">Culture</button>
-        </div>
-      </header>
+  <section class="composer" id="composer">
+    <div class="avatar" id="composeAvatar">G</div>
+    <div class="composebody">
+      <textarea id="postText" maxlength="500" placeholder="What is happening?"></textarea>
+      <div class="composefoot">
+        <span class="muted" id="charCount">0/500</span>
+        <button class="goldbtn" id="publish">Post</button>
+      </div>
+      <div id="postMessage" class="notice hidden"></div>
+    </div>
+  </section>
 
-      <section class="composer" id="composer">
-        <div class="avatar" id="composeAvatar">G</div>
-        <div class="composebody">
-          <textarea id="postText" maxlength="500" placeholder="What is happening?!"></textarea>
-          <div class="composebottom"><span id="charCount" class="muted">0/500</span><button id="publish" class="smallgold">Post</button></div>
-          <div id="postMessage" class="notice hidden"></div>
-        </div>
-      </section>
+  <section id="pageHeading" class="pageheading hidden">
+    <h2 id="pageTitle"></h2>
+    <p class="muted" id="pageSubtitle"></p>
+  </section>
 
-      <div id="pageHeading" class="hidden" style="padding:18px;border-bottom:1px solid var(--line)"><h2 id="pageTitle"></h2><p id="pageInfo" class="muted"></p></div>
-      <section id="posts"></section>
-    </main>
-
-    <aside class="rightbar">
-      <div class="searchbox">⌕ &nbsp; Search GOLDEN</div>
-      <div class="sidecard"><h3>Welcome to GOLDEN</h3><p>Share your moments, music, ideas and updates with your community.</p></div>
-      <div class="sidecard"><h3>What’s happening</h3><p>Be the first to share something new. Your posts will appear in your feed.</p></div>
-      <p class="muted">GOLDEN · Connect and create.</p>
-    </aside>
-  </div>
-
-  <nav class="mobilebar">
-    <button class="active" data-page="home" aria-label="Home">⌂</button>
-    <button data-page="search" aria-label="Explore">⌕</button>
-    <button data-page="notifications" aria-label="Notifications">♧</button>
-    <button data-page="messages" aria-label="Messages">✉</button>
-    <button data-page="profile" aria-label="Profile">♙</button>
-  </nav>
+  <main id="posts"></main>
 </section>
 
+<button id="fab" class="fab hidden" aria-label="Create post">+</button>
+
+<nav id="bottomnav" class="bottomnav hidden">
+  <button class="active" data-page="home"><span class="navicon">⌂</span><span class="navlabel">Home</span></button>
+  <button data-page="search"><span class="navicon">⌕</span><span class="navlabel">Search</span></button>
+  <button data-page="community"><span class="navicon">◉</span><span class="navlabel">Community</span></button>
+  <button data-page="notifications"><span class="navicon">♧</span><span class="navlabel">Notifications</span></button>
+  <button data-page="messages"><span class="navicon">▢</span><span class="navlabel">Messages</span></button>
+</nav>
 <div id="toast" class="hidden" role="status"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -169,20 +174,21 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
 (() => {
   "use strict";
 
+  // Your Supabase project connection
   const SUPABASE_URL = "https://xzifyfuukilypdwevgsu.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ULjB2n30OSkgCcou4loujQ_0NufpGBY";
 
   const $ = id => document.getElementById(id);
-  let sb = null, mode = "login", user = null, feed = "for-you", page = "home";
+  let sb = null, user = null, authMode = "login", activeFeed = "for-you", activePage = "home";
   let posts = [];
   const liked = new Set();
   const reposted = new Set();
 
-  function notice(el, text, kind="err") {
+  function alertBox(el, text, type="error") {
     el.textContent = text;
-    el.className = "notice " + kind;
+    el.className = "notice " + type;
   }
-  function hideNotice(el) {
+  function clearAlert(el) {
     el.textContent = "";
     el.className = "notice hidden";
   }
@@ -192,8 +198,16 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
     clearTimeout(toast.timer);
     toast.timer = setTimeout(() => $("toast").classList.add("hidden"), 3000);
   }
-  function setMode(next) {
-    mode = next;
+  function safe(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    }[c]));
+  }
+  function getName(account=user) {
+    return account?.user_metadata?.full_name || account?.email?.split("@")[0] || "GOLDEN member";
+  }
+  function setAuthMode(mode) {
+    authMode = mode;
     const signup = mode === "signup";
     $("loginTab").classList.toggle("active", !signup);
     $("signupTab").classList.toggle("active", signup);
@@ -203,40 +217,44 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
     $("authTitle").textContent = signup ? "Join GOLDEN" : "Welcome back";
     $("authSubtitle").textContent = signup ? "Create your free account." : "Log in to continue to GOLDEN.";
     $("authSubmit").textContent = signup ? "Create account" : "Log in";
-    hideNotice($("authMessage"));
+    clearAlert($("authMessage"));
   }
-  function showApp(currentUser) {
-    user = currentUser;
+  function showApp(account) {
+    user = account;
     $("auth").classList.add("hidden");
     $("app").classList.remove("hidden");
-    const name = currentUser.user_metadata?.full_name || currentUser.email?.split("@")[0] || "GOLDEN member";
-    $("miniName").textContent = name;
-    $("miniEmail").textContent = currentUser.email || "";
-    $("composeAvatar").textContent = name.slice(0,1).toUpperCase();
-    renderPosts();
+    $("fab").classList.remove("hidden");
+    $("bottomnav").classList.remove("hidden");
+    const name = getName(account);
+    $("topAvatar").textContent = name.charAt(0).toUpperCase();
+    $("composeAvatar").textContent = name.charAt(0).toUpperCase();
+    render();
   }
   function showAuth() {
-    $("app").classList.add("hidden");
     $("auth").classList.remove("hidden");
+    $("app").classList.add("hidden");
+    $("fab").classList.add("hidden");
+    $("bottomnav").classList.add("hidden");
   }
 
-  $("loginTab").addEventListener("click", () => setMode("login"));
-  $("signupTab").addEventListener("click", () => setMode("signup"));
+  $("loginTab").addEventListener("click", () => setAuthMode("login"));
+  $("signupTab").addEventListener("click", () => setAuthMode("signup"));
 
   $("authForm").addEventListener("submit", async event => {
     event.preventDefault();
-    if (!sb) return notice($("authMessage"), "Supabase has not connected. Refresh the page and check your internet.");
+    if (!sb) return alertBox($("authMessage"), "Supabase is not connected. Refresh the page and check your internet.");
     const button = $("authSubmit");
     button.disabled = true;
     button.textContent = "Please wait…";
-    hideNotice($("authMessage"));
-    const email = $("email").value.trim();
-    const password = $("password").value;
-    const fullName = $("fullName").value.trim();
+    clearAlert($("authMessage"));
 
     try {
+      const email = $("email").value.trim();
+      const password = $("password").value;
       let result;
-      if (mode === "signup") {
+
+      if (authMode === "signup") {
+        const fullName = $("fullName").value.trim();
         if (!fullName) throw new Error("Please enter your name.");
         result = await sb.auth.signUp({
           email, password,
@@ -247,7 +265,7 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
           showApp(result.data.user);
           toast("Welcome to GOLDEN!");
         } else {
-          notice($("authMessage"), "Account request received. Check your email for the confirmation link, then log in.", "ok");
+          alertBox($("authMessage"), "Account request received. Check your email for a confirmation link, then log in.", "success");
         }
       } else {
         result = await sb.auth.signInWithPassword({ email, password });
@@ -255,93 +273,148 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
         if (result.data.user) showApp(result.data.user);
       }
     } catch (error) {
-      notice($("authMessage"), error.message || "Authentication failed. Please try again.");
+      alertBox($("authMessage"), error.message || "Authentication failed.");
     } finally {
       button.disabled = false;
-      button.textContent = mode === "signup" ? "Create account" : "Log in";
+      button.textContent = authMode === "signup" ? "Create account" : "Log in";
     }
-  });
-
-  $("logout").addEventListener("click", async () => {
-    if (!sb) return;
-    const {error} = await sb.auth.signOut();
-    if (error) toast(error.message);
-    else { user = null; showAuth(); setMode("login"); }
   });
 
   $("postText").addEventListener("input", () => {
     $("charCount").textContent = $("postText").value.length + "/500";
   });
 
-  function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, c => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    }[c]));
+  // Demonstration posts: replace with real database posts when schema is connected.
+  function seedDemoPosts() {
+    posts = [
+      {
+        id:"demo1", uid:"demo-ocean", name:"OceanMind", handle:"OceanMind", time:"3h",
+        text:"Good music hits different when the world feels heavy. 🎧\n\nRight now I’m on a classic run — old school vibes, new perspective.",
+        tags:["Music","GoodVibes","Life"], category:"for-you", demo:true
+      },
+      {
+        id:"demo2", uid:"demo-luna", name:"LunaRae", handle:"LunaRae", time:"5h",
+        text:"Finally finished that workout 💪\n\nFresh air, good music, and a clear mind. That’s the kind of day I want more of.",
+        tags:["Wellness","DailyLife","Progress"], category:"for-you", demo:true
+      },
+      {
+        id:"demo3", uid:"demo-jayden", name:"JaydenCore", handle:"JaydenCore", time:"7h",
+        text:"Late night thoughts:\n\nThe best moments in life aren't planned. They just happen when you're open to them.",
+        tags:["Mindset","Gratitude","RealTalk"], category:"for-you", demo:true
+      }
+    ];
   }
 
-  function renderPosts() {
-    const container = $("posts");
-    let visible = posts;
-    if (page === "profile") visible = posts.filter(p => p.uid === user?.id);
-    if (page !== "home" && page !== "profile") {
-      container.innerHTML = `<div class="empty"><h2>${escapeHTML(pageTitle(page))}</h2><p>This section is ready for its next feature.</p></div>`;
-      return;
-    }
-    if (feed === "following") {
-      container.innerHTML = '<div class="empty">Your Following feed will show posts from accounts you follow. Follow features need to be connected next.</div>';
-      return;
-    }
-    if (feed === "music" || feed === "culture") {
-      visible = visible.filter(p => p.category === feed);
-    }
-    if (!visible.length) {
-      container.innerHTML = '<div class="empty"><h2>Welcome to GOLDEN</h2><p>No posts yet. Be the first to share what is happening!</p></div>';
-      return;
-    }
-    container.innerHTML = visible.map(p => {
-      const isLiked = liked.has(p.id);
-      const isReposted = reposted.has(p.id);
-      const initial = escapeHTML((p.name || "G").slice(0,1).toUpperCase());
-      return `<article class="post">
-        <div class="avatar">${initial}</div>
-        <div class="postmain">
-          <div class="postmeta"><span class="postname">${escapeHTML(p.name)}</span> <span class="handle">@${escapeHTML(p.handle)} · ${escapeHTML(p.time)}</span></div>
-          <div class="posttext">${escapeHTML(p.text)}</div>
-          <div class="postactions">
-            <button class="action" data-action="reply" data-id="${p.id}">○ <span>Reply</span></button>
-            <button class="action ${isReposted ? "reposted":""}" data-action="repost" data-id="${p.id}">⇄ <span>${isReposted?"Reposted":"Repost"}</span></button>
-            <button class="action ${isLiked ? "liked":""}" data-action="like" data-id="${p.id}">${isLiked?"♥":"♡"} <span>${isLiked?"Liked":"Like"}</span></button>
-            <button class="action" data-action="share" data-id="${p.id}">↗ <span>Share</span></button>
-          </div>
+  function postMarkup(p) {
+    const isLiked = liked.has(p.id);
+    const isReposted = reposted.has(p.id);
+    const initial = safe(getNameFromPost(p).charAt(0).toUpperCase());
+    const tagHTML = (p.tags || []).map(tag => `<span class="tag">#${safe(tag)}</span>`).join("");
+    return `<article class="post">
+      <div class="avatar">${initial}</div>
+      <div class="postmain">
+        <div class="meta">
+          <span class="name">${safe(p.name)}</span>
+          <span class="handle">@${safe(p.handle)}</span>
+          <span class="time">· ${safe(p.time)}</span>
+          <button class="dots" data-action="more" data-id="${safe(p.id)}" aria-label="More options">••</button>
         </div>
-      </article>`;
-    }).join("");
+        <div class="posttext">${safe(p.text)}</div>
+        ${tagHTML ? `<div class="tags">${tagHTML}</div>` : ""}
+        <div class="actions">
+          <button class="action" data-action="reply" data-id="${safe(p.id)}"><span class="symbol">♡</span></button>
+          <button class="action ${isReposted ? "reposted":""}" data-action="repost" data-id="${safe(p.id)}"><span class="symbol">⇄</span></button>
+          <button class="action ${isLiked ? "liked":""}" data-action="like" data-id="${safe(p.id)}"><span class="symbol">${isLiked ? "♥" : "♡"}</span></button>
+          <button class="action" data-action="views" data-id="${safe(p.id)}"><span class="symbol">▥</span></button>
+          <button class="action" data-action="bookmark" data-id="${safe(p.id)}"><span class="symbol">♧</span></button>
+          <button class="action" data-action="share" data-id="${safe(p.id)}"><span class="symbol">↗</span></button>
+        </div>
+      </div>
+    </article>`;
   }
+  function getNameFromPost(p) {
+    return p.name || "GOLDEN member";
+  }
+  function render() {
+    const heading = $("pageHeading");
+    const composer = $("composer");
+    const tabs = $("feedTabs");
 
-  function pageTitle(p) {
-    return ({search:"Explore",notifications:"Notifications",messages:"Messages",profile:"Your profile"})[p] || "GOLDEN";
+    document.querySelectorAll("[data-page]").forEach(b => {
+      b.classList.toggle("active", b.dataset.page === activePage);
+    });
+    document.querySelectorAll("[data-feed]").forEach(b => {
+      b.classList.toggle("active", b.dataset.feed === activeFeed);
+    });
+
+    if (activePage !== "home") {
+      composer.classList.add("hidden");
+      tabs.classList.add("hidden");
+      heading.classList.remove("hidden");
+      const titles = {
+        search:"Search GOLDEN", community:"Community",
+        notifications:"Notifications", messages:"Messages", profile:"Your profile"
+      };
+      $("pageTitle").textContent = titles[activePage] || "GOLDEN";
+      $("pageSubtitle").textContent = activePage === "profile"
+        ? "Your account and posts"
+        : "More GOLDEN features are coming soon.";
+      if (activePage === "profile") {
+        const mine = posts.filter(p => p.uid === user?.id);
+        $("posts").innerHTML = mine.length
+          ? mine.map(postMarkup).join("")
+          : '<div class="empty">Your posts will appear here.</div>';
+      } else {
+        $("posts").innerHTML = '<div class="empty"><h2>' + safe(titles[activePage] || "GOLDEN") + '</h2><p>This section needs its next feature and database connection.</p></div>';
+      }
+      return;
+    }
+
+    composer.classList.remove("hidden");
+    tabs.classList.remove("hidden");
+    heading.classList.add("hidden");
+
+    if (activeFeed === "following") {
+      $("posts").innerHTML = '<div class="empty"><h2>Your Following feed</h2><p>Posts from people you follow will appear here once following is connected.</p></div>';
+      return;
+    }
+    const visible = activeFeed === "discover"
+      ? posts
+      : posts.filter(p => p.category === "for-you" || !p.category);
+
+    $("posts").innerHTML = visible.length
+      ? visible.map(postMarkup).join("") +
+        `<section class="promo">
+          <div class="promoicon">◎</div>
+          <div><h3>Discover more languages</h3>
+          <p>Connect with people around the world by exploring posts in different languages.</p>
+          <button class="outlinebtn" data-action="languages">Explore languages →</button></div>
+        </section>`
+      : '<div class="empty"><h2>Welcome to GOLDEN</h2><p>Be the first to share something with your community.</p></div>';
   }
 
   $("publish").addEventListener("click", () => {
-    if (!user) return toast("Please log in first.");
     const text = $("postText").value.trim();
     if (!text) return toast("Write something before posting.");
-    const name = user.user_metadata?.full_name || user.email.split("@")[0];
+    if (!user) return toast("Please log in first.");
+
+    const tags = [...text.matchAll(/#([a-z0-9_]+)/gi)].map(m => m[1]);
     posts.unshift({
-      id: Date.now().toString(),
-      uid: user.id,
-      name,
-      handle: user.email.split("@")[0],
+      id:"local-" + Date.now(),
+      uid:user.id,
+      name:getName(),
+      handle:user.email.split("@")[0],
       text,
-      time: "now",
-      category: feed === "music" || feed === "culture" ? feed : "for-you"
+      tags,
+      time:"now",
+      category:"for-you",
+      demo:false
     });
     $("postText").value = "";
     $("charCount").textContent = "0/500";
-    page = "home";
-    updateNavigation();
-    renderPosts();
-    toast("Posted to this session. Permanent post storage is not connected yet.");
+    activePage = "home";
+    render();
+    toast("Post added for this session. Permanent saving is not connected yet.");
   });
 
   $("posts").addEventListener("click", async event => {
@@ -350,74 +423,90 @@ textarea{width:100%;resize:vertical;min-height:75px;border:0;outline:none;backgr
     const id = button.dataset.id;
     const action = button.dataset.action;
     const post = posts.find(p => p.id === id);
-    if (action === "like") {
+
+    if (action === "like" && post) {
       liked.has(id) ? liked.delete(id) : liked.add(id);
-      renderPosts();
+      render();
     } else if (action === "repost") {
       reposted.has(id) ? reposted.delete(id) : reposted.add(id);
-      renderPosts();
+      render();
     } else if (action === "reply") {
-      toast("Replies will be added in the next database update.");
+      toast("Replies will be added when comments are connected.");
+    } else if (action === "views") {
+      toast("Post analytics will be available in a future update.");
+    } else if (action === "bookmark") {
+      toast("Bookmarks need permanent storage to be saved.");
+    } else if (action === "more") {
+      toast("Post options will be added in a future update.");
+    } else if (action === "languages") {
+      toast("Language preferences are coming soon.");
     } else if (action === "share" && post) {
-      const shareText = post.text;
       try {
-        if (navigator.share) await navigator.share({title:"GOLDEN post",text:shareText,url:location.href});
-        else if (navigator.clipboard) { await navigator.clipboard.writeText(shareText + " " + location.href); toast("Post link copied."); }
-        else toast("Sharing is not supported by this browser.");
-      } catch (e) { if (e.name !== "AbortError") toast("Could not share this post."); }
+        if (navigator.share) {
+          await navigator.share({title:"GOLDEN", text:post.text, url:location.href});
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(post.text + "\n" + location.href);
+          toast("Post copied to clipboard.");
+        } else {
+          toast("Sharing is not supported in this browser.");
+        }
+      } catch (e) {
+        if (e.name !== "AbortError") toast("Could not share this post.");
+      }
     }
   });
 
-  function updateNavigation() {
-    document.querySelectorAll("[data-page]").forEach(button => {
-      button.classList.toggle("active", button.dataset.page === page);
-    });
-    $("composer").classList.toggle("hidden", page !== "home");
-    $("feedTabs").classList.toggle("hidden", page !== "home");
-    $("pageHeading").classList.toggle("hidden", page === "home");
-    if (page !== "home") {
-      $("pageTitle").textContent = pageTitle(page);
-      $("pageInfo").textContent = page === "profile" ? "Your posts in this session" : "GOLDEN community";
-    }
-    renderPosts();
-  }
+  $("fab").addEventListener("click", () => {
+    activePage = "home";
+    render();
+    $("postText").focus();
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  $("topProfile").addEventListener("click", () => {
+    activePage = "profile";
+    render();
+  });
+  $("findPeople").addEventListener("click", () => {
+    activePage = "community";
+    render();
+  });
   document.querySelectorAll("[data-page]").forEach(button => {
     button.addEventListener("click", () => {
-      page = button.dataset.page;
-      updateNavigation();
+      activePage = button.dataset.page;
+      render();
     });
-  });
-  $("topProfile").addEventListener("click", () => {page="profile";updateNavigation();});
-  $("sidePost").addEventListener("click", () => {
-    page="home"; updateNavigation(); $("postText").focus();
-    window.scrollTo({top:0,behavior:"smooth"});
   });
   document.querySelectorAll("[data-feed]").forEach(button => {
     button.addEventListener("click", () => {
-      feed = button.dataset.feed;
-      document.querySelectorAll("[data-feed]").forEach(b => b.classList.toggle("active", b === button));
-      renderPosts();
+      activeFeed = button.dataset.feed;
+      render();
     });
   });
 
   async function init() {
     try {
-      if (!window.supabase) throw new Error("Supabase library did not load. Check your connection and refresh.");
+      if (!window.supabase) throw new Error("Supabase library failed to load. Check your connection.");
       sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
       const {data,error} = await sb.auth.getSession();
       if (error) throw error;
-      $("connection").textContent = "Secure connection initialized.";
+      $("connection").textContent = "Connection initialized.";
+      seedDemoPosts();
       if (data.session?.user) showApp(data.session.user);
       else showAuth();
-      sb.auth.onAuthStateChange((_event,session) => {
+
+      sb.auth.onAuthStateChange((_event, session) => {
         if (session?.user) showApp(session.user);
-        else { user = null; showAuth(); }
+        else {
+          user = null;
+          showAuth();
+        }
       });
     } catch (error) {
       $("connection").textContent = "Connection failed.";
-      notice($("authMessage"), "Setup error: " + (error.message || "Unknown error"));
+      alertBox($("authMessage"), "Setup error: " + (error.message || "Unknown error"));
     }
   }
+
   init();
 })();
 </script>
